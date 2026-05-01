@@ -83,6 +83,7 @@ body {
   color: white;
   transition: all 200ms ease-in-out;
 }
+
 .Card:hover{
   transform: scale(1.02);
 }
