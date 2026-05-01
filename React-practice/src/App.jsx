@@ -1,10 +1,11 @@
 import React from 'react'
-import Card from './components/card.jsx'
+import Card from './components/Card'
+
 const App = () => {
   return (
     <>
-    <div id='flexi'>
-      
+        <h1>Products: </h1>
+      <div id='Products'>
       <Card />
       <Card />
       <Card />
@@ -12,7 +13,7 @@ const App = () => {
       <Card />
       <Card />
 
-    </div>
+      </div>
     </>
   )
 }
