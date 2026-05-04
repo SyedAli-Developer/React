@@ -6,26 +6,26 @@ const Card = (props) => {
   return (
     <div className={Styles.card}>
       <div className={Styles.top}>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnm5CmL80RwspTM5fccqQGnp3IgQGMPDKgkA&s" alt="" />
+        <img src={props.logo} alt="" />
         <div>Save <Bookmark /> </div>
       </div>
 
       <div className={Styles.middle}>
         <div className={Styles.divt}>
-          <h3>Amazon</h3>
-          <span>3 Days Ago</span>
+          <h3>{props.company}</h3>
+          <span>{props.posted}</span>
         </div>
-        <h2>Seniour UI/UX Designer</h2>
+        <h2>{props.title}</h2>
         <div className={Styles.divb}>
-          <span>Part Time</span>
-          <span>Senior Level</span>
+          <span>{props.tag1}</span>
+          <span>{props.tag2}</span>
         </div>
       </div>
 
       <div className={Styles.bottom}>
           <div>
-            <h2>$120/hr</h2>
-            <h4>Mumbai , india</h4>
+            <h3>{props.salary}</h3>
+            <h5>{props.locatoin}</h5>
           </div>
           <button>Apply Now</button>
       </div>
