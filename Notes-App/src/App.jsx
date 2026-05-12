@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
+import Card from './Components/Card'
 
 const App = () => {
   const [title, setTitle] = useState('')
   const [detail, setDetail] = useState('')
+  const [task, setTask] = useState([])
+
+
   const submitHandler = (e) => {
-    console.log(title)
-    setTitle('')
-    console.log(detail)
+
+    const newTask = [...task]
+
+    newTask.push({ title, detail })
+
+    setTask(newTask)
+
+
     setDetail('')
+    setTitle('')
   }
   const handleInput = (e) => {
     const element = e.target;
@@ -16,65 +26,58 @@ const App = () => {
   };
 
   return (
-    <div className='bg-black h-screen text-white flex flex-col'>
+    <div className='bg-black h-screen text-white flex flex-col overflow-hidden'>
 
 
       <form onSubmit={(e) => {
-        e.preventDefault()
-        submitHandler(e)
-      }} className='flex w-full sm:w-11/12 md:w-10/12 md:max-w-175 mx-auto  flex-col gap-5 p-5 sm:p-8'>
+        if (title == "") {
+          e.preventDefault()
+        } else {
+
+          e.preventDefault()
+          submitHandler(e)
+        }
+      }}
+        className='flex w-full sm:w-11/12 md:w-10/12 md:max-w-175 mx-auto  flex-col gap-5 p-5 sm:p-8'>
 
 
         <input type="text"
           placeholder='Title'
           value={title}
-          onChange={(e)=>{
+          onChange={(e) => {
             setTitle(e.target.value)
           }}
           className=' outline-none border rounded-[10px] py-2.5 px-5' />
 
 
         <textarea type="text"
-          onChange={handleInput}
+          onChange={handleInput, (e) => {
+            setDetail(e.target.value);
+            handleInput(e);
+          }}
           value={detail}
-          onch
           placeholder='Write Details'
           className='outline-none border rounded-[10px] py-3 px-5  overflow-hidden resize-none' >
         </textarea>
 
 
-        <button className='border border-white bg-white text-black py-3 rounded-[10px] overflow-auto resize-none font-bold sm:text-2xl'>Add Note</button>
+        <button className='border border-white bg-white text-black py-3 rounded-[10px] overflow-auto active:scale-95 resize-none font-bold sm:text-2xl'>Add Note</button>
 
 
       </form>
 
+      <div>
 
-      <div className='bg-amber-800 py-5 px-5 sm:px-10 md:px-10 w-full flex gap-y-8 gap-x-3 flex-wrap justify-evenly max-h-[80vh] overflow-y-auto custom-scrollbar'>
-
-        <div className='text-black p-5 bg-gray-300 w-60 sm:w-60 md:w-75 min-h-50 border-none rounded-[10px]'>
-          <h1 className='sm:text-3xl border-b-2 p-1 mb-4'>Title</h1>
-          <p className='sm:text-lg'>Description...</p>
+        <h1 className='ml-8 mb-2.5 sm:ml-15 md:ml-20 text-3xl font-bold'>Your Recent Notes</h1>
+        <div className=' py-15 px-5 sm:px-10 md:px-10 w-full flex gap-y-8 gap-x-3 flex-wrap justify-evenly max-h-[60vh] overflow-y-auto'>
+          {task.map((data, idx) => {
+            return <Card key={idx} title={data.title} detail={data.detail} />
+          })}
         </div>
-
-        <div className='text-black p-5 bg-gray-300 w-60 sm:w-60 md:w-75 min-h-50 border-none rounded-[10px]'>
-          <h1 className='sm:text-3xl border-b-2 p-1 mb-4'>Title</h1>
-          <p className='sm:text-lg'>Description...</p>
-        </div>
-
-        <div className='text-black p-5 bg-gray-300 w-60 sm:w-60 md:w-75 min-h-50 border-none rounded-[10px]'>
-          <h1 className='sm:text-3xl border-b-2 p-1 mb-4'>Title</h1>
-          <p className='sm:text-lg'>Description...</p>
-        </div>
-        
-       
-        
-       
-        
-        
       </div>
-     
+
     </div >
-    
+
   )
 }
 
