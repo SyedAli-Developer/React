@@ -6,6 +6,7 @@ const Card = (props) => {
   return (
     <div className="relative text-black bg-gray-300 p-5 w-60 sm:w-60 md:w-75 min-h-50 border-none rounded-[10px] overflow-hidden">
       <X 
+      
         onClick={
           ()=>{
             props.action(props.id)
